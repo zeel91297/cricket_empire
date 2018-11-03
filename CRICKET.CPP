@@ -1,0 +1,644 @@
+#include <stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+char *first_team_playears_name[11] = {"Virat Kohli(c)","Shikhar Dhawan","Hardik Pandya",
+                                        "Siddarth Kaul","Bhuvneshwar Kumar","Ravindra Jadeja,","Jasprit Bumrah",
+                                        "MS Dhoni","Kedar Jadhav","K Khaleel Ahmed",
+                                        "Yuzvendra Chahal"};
+char *second_team_playears_name[11] = {"Sarfraz Ahmed(c)","Azhar Ali","Fakhar Zaman",
+                                        "Imam-ul-Haq","Babar Azam","Mohammad Hafeez",
+                                        "Faheem Ashraf","Hasan Ali","Mohammad Abbas","Bilal Asif",
+                                        "Haris Sohail"};
+char *third_team_playears_name[11] = {"Tim Paine(c)","Aaron Finch","Ashton Agar",
+                                        "Alex Carey","Travis Head","Nathan Lyon",
+                                        "Glenn Maxwell","Shaun Marsh","Jhye Richardson","Kane Richardson",
+					"Andrew Tye"};
+
+
+int tmp_first_team_select_option_no;
+int my_team_no,opposite_team_no;    // 1 for INDIA  ,   2 for PAKISTAN  ,   3 for SOUTH AFRICA
+char *batting_team_name,*bowling_team_name;
+void home_page();
+void play_game();
+void first_number_team();
+void second_number_team();
+void third_number_team();
+void toss(int,int);
+
+
+int main()
+{
+    clrscr();
+
+    printf("WELCOME TO GAME OF THE CRICKET !!!!\n");
+    getch();
+    printf("");
+    //first_number_team();
+    clrscr();
+    home_page();
+    
+
+    return 0;
+}
+void home_page(){
+    int option;
+    
+    printf("                 MENU                 \n\n");
+    printf("         1. PLAY THE GAME\n");
+    printf("         2. RULES\n");
+    printf("         3. CREDITS\n");
+    printf("         4. EXIT\n");
+    
+    printf("         SELECT AN OPTION ( 1- 4) : ");
+    scanf("%d",&option);
+    
+
+   switch (option) 
+   { 
+       case 1: play_game();
+               break; 
+       case 2: 
+               break; 
+       case 3: 
+               break;
+       case 4: 
+               exit(1);
+       default:printf("INVALID CHOICE...");
+		home_page();
+                break;   
+   }
+    
+}
+void play_game(){
+    
+    int choose_first_team_number,choose_second_team_number;
+    char invalid_choice;
+    clrscr();
+    printf("\n\n\n\n              TEAM NAMES              \n\n");
+    printf("==================================================\n");
+    printf("              1. INDIA\n");
+    printf("              2. PAKISTAN\n");
+    printf("              3. SOUTH AFRICA\n");
+    printf("              4. Go To Home Page\n\n ");
+    printf("Choose Your Team ( 1-4 ) :");
+    scanf("%d",&choose_first_team_number);
+    
+    
+    tmp_first_team_select_option_no=choose_first_team_number;
+    clrscr();
+    if(tmp_first_team_select_option_no==1){
+        
+                            printf("\n\n\n\n              TEAM NAMES              \n\n");
+		printf("==================================================\n");
+               // printf("              1. INDIA\n");
+                printf("              1. PAKISTAN\n");
+		printf("              2. SOUTH AFRICA\n");
+                printf("              3. Go To Home Page\n\n ");
+                printf("Choose Opposite Team ( 1-3 ) :");
+                scanf("%d",&choose_second_team_number);
+                
+
+                
+                clrscr();
+                if(choose_second_team_number==1){
+                    
+                    clrscr();
+		    first_number_team();
+		    getch();
+		    clrscr();
+                    second_number_team();
+		    my_team_no=1;
+                    opposite_team_no=2;
+                    getch();
+                    printf("\n\n\t\t\t\t\tENTER ANY KEY FOR TOSSSS.....");
+		    getch();
+                    toss(1,2);
+
+                }
+                else{
+                    
+                    clrscr();
+		    first_number_team();
+		    getch();
+		    clrscr();
+                    third_number_team();
+                    my_team_no=1;
+                    opposite_team_no=3;
+                    getch();
+		    printf("\n\n\t\t\t\t\tENTER ANY KEY FOR TOSSSS.....");
+                    getch();
+                    toss(1,3);
+
+                    
+                }
+    }
+    else if(tmp_first_team_select_option_no==2){
+
+				printf("\n\n\n\n              TEAM NAMES              \n\n");
+                printf("==================================================\n");
+                printf("              1. INDIA\n");
+               // printf("              1. PAKISTAN\n");
+                printf("              2. SOUTH AFRICA\n");
+		printf("              3. Go To Home Page\n\n ");
+                printf("Choose Opposite Team ( 1-3 ) :");
+                scanf("%d",&choose_second_team_number);
+
+                 if(choose_second_team_number==1){
+                    
+                    clrscr();
+                   
+		    second_number_team();
+		    getch();
+		    clrscr();
+                    first_number_team();
+                    my_team_no=2;
+                    opposite_team_no=1;
+                    getch();
+                    printf("\n\n\t\t\t\t\tENTER ANY KEY FOR TOSSSS.....");
+		    getch();
+		    toss(2,1);
+                    
+                }
+		else{
+                    
+		    clrscr();
+		    second_number_team();
+		    getch();
+		    clrscr();
+                    third_number_team();
+                    my_team_no=2;
+                    opposite_team_no=3;
+                    getch();
+                    printf("\n\n\t\t\t\t\tENTER ANY KEY FOR TOSSSS.....");
+                    getch();
+                    toss(2,3);
+                    
+                    
+                }
+                
+
+
+    }
+    else if(tmp_first_team_select_option_no==3)
+    {
+        
+                             printf("\n\n\n\n              TEAM NAMES              \n\n");
+		printf("==================================================\n");
+                printf("              1. INDIA\n");
+                printf("              2. PAKISTAN\n");
+               // printf("              2. SOUTH AFRICA\n");
+                printf("              3. Go To Home Page\n\n ");
+                printf("Choose Opposite Team ( 1-3 ) :");
+                scanf("%d",&choose_second_team_number);
+                
+        
+        
+                if(choose_second_team_number==1){
+                    
+                    clrscr();
+
+		    third_number_team();
+		    getch();
+		    clrscr();
+                    first_number_team();
+                    my_team_no=3;
+                    opposite_team_no=1;
+                    getch();
+                    printf("\n\n\t\t\t\t\tENTER ANY KEY FOR TOSSSS.....");
+                    getch();
+                    toss(3,1);
+                    
+                }
+                else{
+                    
+                    clrscr();
+		    third_number_team();
+		    getch();
+		    clrscr();
+                    second_number_team();
+                    my_team_no=3;
+                    opposite_team_no=2;
+		    getch();
+		    printf("\n\n\t\t\t\t\tENTER ANY KEY FOR TOSSSS.....");
+                    getch();
+		    toss(3,2);
+                    
+                    
+                }
+                
+    }
+    else{
+        
+        
+        clrscr();
+        printf("\n\n\nINVALID CHOICE\n\n\n");
+        play_game();
+
+    }
+    
+
+    
+
+}
+
+void first_number_team(){
+    
+   
+    
+    int print_player_index;
+    
+    char *(*print_player_name)[11] = &first_team_playears_name;
+    
+   
+
+    printf("");
+    
+    printf("\n\n\t\t\tINDIA TEAN PLAYEARS LIST : \n\n");
+    
+    for(print_player_index=0;print_player_index<11;print_player_index++)
+    {
+        
+	 printf("\t\t\t%d : %s\n",print_player_index+1,(*print_player_name)[print_player_index]);
+             
+    }
+  
+    
+    
+    
+}
+void second_number_team(){
+    
+    
+    int print_player_index;
+    
+    char *(*print_player_name)[11] = &second_team_playears_name;
+    
+
+    
+    printf("");
+    
+    printf("\n\n\t\t\tPAKISTAN TEAM PLAYEARS LIST : \n\n");
+
+    for(print_player_index=0;print_player_index<11;print_player_index++)
+    {
+        
+         printf("\t\t\t%d : %s\n",print_player_index+1,(*print_player_name)[print_player_index]);
+             
+    }
+    
+    
+}
+void third_number_team(){
+    
+    
+    int print_player_index;
+    
+    char *(*print_player_name)[11] = &third_team_playears_name;
+    
+   
+    
+    printf("");
+
+    printf("\n\n\t\t\tSOUTH AFRICA TEAM PLAYEARS LIST : \n\n");
+    for(print_player_index=0;print_player_index<11;print_player_index++)
+    {
+        
+         printf("\t\t\t%d : %s\n",print_player_index+1,(*print_player_name)[print_player_index]);
+             
+    }
+    
+    
+}
+void toss(int my_team,int opposite_team){
+    
+    int toss_random;
+    int toss_option_select;
+    clrscr();
+    toss_random=rand()%2;
+    
+    
+            if(toss_random==1)   // IF PART : YOUR TEAM WON THE TOSS    ,     ELSE PART : OPPOSITE TEAM WON THE TOSS 
+	    {
+                
+                
+                
+                
+                if(my_team==1 && opposite_team==2){
+                     
+                     printf("YOU : TEAM INDIA WON THE TOSSS...\n");
+                     printf("1. Batting     \n2. Bowling      \nChoose Your option ( Either 1 or 2 ) :");
+                     scanf("%d",&toss_option_select);
+                     
+                     if(toss_option_select==1){
+                         
+                                printf("\n\nTOSS RESULT\n");
+                                printf("Batting : TEAM INDIA\n");
+                                printf("Bowling : TEAM PAKISTAN");
+                                batting_team_name="INDIA";
+                                bowling_team_name="PAKISTAN";
+                     }
+                     else{
+
+                                printf("\n\nTOSS RESULT\n");
+                                printf("Batting : TEAM PAKISTAN\n");
+                                printf("Bowling : TEAM INDIA");
+                                batting_team_name="PAKISTAN";
+                                bowling_team_name="INDIA";
+                         
+                     }
+                     
+                    
+                }
+                else if(my_team==1 && opposite_team==3){
+                    
+                      printf("YOU : TEAM INDIA WON THE TOSSS...\n");
+                      printf("1. Batting     \n2. Bowling      \nChoose Your option ( Either 1 or 2 ) :");
+                      scanf("%d",&toss_option_select);
+                     
+                      if(toss_option_select==1){
+                         
+                                printf("\n\nTOSS RESULT\n");
+				printf("Batting : TEAM INDIA\n");
+                                printf("Bowling : TEAM SOUTH AFRICA");
+                                batting_team_name="INDIA";
+                                bowling_team_name="SOUTH AFRICA";
+                     }
+                     else{
+                         
+                                printf("\n\nTOSS RESULT\n");
+                                printf("Batting : TEAM SOUTH AFRICA\n");
+                                printf("Bowling : TEAM INDIA");
+                                batting_team_name="SOUTH AFRICA";
+                                bowling_team_name="INDIA";
+                         
+                     }
+                     
+                }
+                else if(my_team==2 && opposite_team==1){
+                    
+                      printf("YOU : TEAM PAKISTAN WON THE TOSSS...\n");
+                      printf("1. Batting     \n2. Bowling      \nChoose Your option ( Either 1 or 2 ) :");
+                      scanf("%d",&toss_option_select);
+                     
+                      if(toss_option_select==1){
+                         
+                                printf("\n\nTOSS RESULT\n");
+                                printf("Batting : TEAM PAKISTAN\n");
+                                printf("Bowling : TEAM INDIA");
+                                batting_team_name="PAKISTAN";
+                                bowling_team_name="INDIA";
+                     }
+                     else{
+                         
+                                printf("\n\nTOSS RESULT\n");
+                                printf("Batting : TEAM INDIA\n");
+                                printf("Bowling : TEAM PAKISTAN");
+                                batting_team_name="INDIA";
+                                bowling_team_name="PAKISTAN";
+                         
+                     }
+                    
+                }
+                else if(my_team==2 && opposite_team==3){
+                    
+                      printf("YOU : TEAM PAKISTAN WON THE TOSSS...\n");
+                      printf("1. Batting     \n2. Bowling      \nChoose Your option ( Either 1 or 2 ) :");
+                      scanf("%d",&toss_option_select);
+                     
+                      if(toss_option_select==1){
+                         
+                                printf("\n\nTOSS RESULT\n");
+                                printf("Batting : TEAM PAKISTAN\n");
+                                printf("Bowling : TEAM SOUTH AFRICA");
+                                batting_team_name="PAKISTAN";
+                                bowling_team_name="SOUTH AFRICA";
+                     }
+                     else{
+                         
+                                printf("\n\nTOSS RESULT\n");
+                                printf("Batting : TEAM SOUTH AFRICA\n");
+                                printf("Bowling : TEAM PAKISTAN");
+                                batting_team_name="SOUTH AFRICA";
+                                bowling_team_name="PAKISTAN";
+                         
+                     }
+                    
+                }
+                else if(my_team==3 && opposite_team==1){
+                    
+                      printf("YOU : TEAM SOUTH AFRICA WON THE TOSSS...\n");
+                      printf("1. Batting     \n2. Bowling      \nChoose Your option ( Either 1 or 2 ) :");
+                      scanf("%d",&toss_option_select);
+                     
+                      if(toss_option_select==1){
+                         
+                                printf("\n\nTOSS RESULT\n");
+                                printf("Batting : TEAM SOUTH AFRICA\n");
+                                printf("Bowling : TEAM INDIA");
+                                batting_team_name="SOUTH AFRICA";
+                                bowling_team_name="INDIA";
+                     }
+                     else{
+                         
+                                printf("\n\nTOSS RESULT\n");
+                                printf("Batting : TEAM INDIA\n");
+                                printf("Bowling : TEAM SOUTH AFRICA");
+                                batting_team_name="INDIA";
+                                bowling_team_name="SOUTH AFRICA";
+                         
+                     }
+                    
+                }
+                else if(my_team==3 && opposite_team==2){
+                    
+                      printf("YOU : TEAM SOUTH AFRICA WON THE TOSSS...\n");
+                      printf("1. Batting     \n2. Bowling      \nChoose Your option ( Either 1 or 2 ) :");
+                      scanf("%d",&toss_option_select);
+                     
+                      if(toss_option_select==1){
+                         
+                                printf("\n\nTOSS RESULT\n");
+                                printf("Batting : TEAM SOUTH AFRICA\n");
+                                printf("Bowling : TEAM PAKISTAN");
+                                batting_team_name="SOUTH AFRICA";
+                                bowling_team_name="PAKISTAN";
+                     }
+                     else{
+                         
+                                printf("\n\nTOSS RESULT\n");
+                                printf("Batting : TEAM PAKISTAN\n");
+                                printf("Bowling : TEAM SOUTH AFRICA");
+                                batting_team_name="PAKISTAN";
+                                bowling_team_name="SOUTH AFRICA";
+                         
+                     }
+                    
+                }
+                
+                
+            }
+            //**********************************************************************************************
+            else
+            {
+                
+                               
+                if(my_team==1 && opposite_team==2){
+                     
+                     printf("OPPOSITE : TEAM PAKISTAN WON THE TOSSS...\n");
+                     printf("1. Batting     \n2. Bowling      \nChoose Your option ( Either 1 or 2 ) :");
+                     scanf("%d",&toss_option_select);
+                     
+                     if(toss_option_select==1){
+                         
+                                printf("\n\nTOSS RESULT\n");
+                                printf("Batting : TEAM PAKISTAN\n");
+                                printf("Bowling : TEAM INDIA");
+                                batting_team_name="PAKISTAN";
+                                bowling_team_name="INDIA";
+                     }
+                     else{
+                         
+                                printf("\n\nTOSS RESULT\n");
+                                printf("Batting : TEAM INDIA\n");
+                                printf("Bowling : TEAM PAKISTAN");
+                                batting_team_name="INDIA";
+                                bowling_team_name="PAKISTAN";
+                         
+                     }
+                     
+                    
+                }
+                else if(my_team==1 && opposite_team==3){
+                    
+                      printf("OPPOSITE : TEAM SOUTH AFRICA WON THE TOSSS...\n");
+                      printf("1. Batting     \n2. Bowling      \nChoose Your option ( Either 1 or 2 ) :");
+                      scanf("%d",&toss_option_select);
+                     
+                      if(toss_option_select==1){
+                         
+                                printf("\n\nTOSS RESULT\n");
+                                printf("Batting : TEAM SOUTH AFRICA\n");
+                                printf("Bowling : TEAM INDIA");
+                                batting_team_name="SOUTH AFRICA";
+                                bowling_team_name="INDIA";
+                     }
+                     else{
+                         
+                                printf("\n\nTOSS RESULT\n");
+                                printf("Batting : TEAM INDIA\n");
+                                printf("Bowling : TEAM SOUTH AFRICA");
+                                batting_team_name="INDIA";
+                                bowling_team_name="SOUTH AFRICA";
+                         
+                     }
+                     
+                }
+                else if(my_team==2 && opposite_team==1){
+                    
+                      printf("OPPOSITE : TEAM INDIA WON THE TOSSS...\n");
+                      printf("1. Batting     \n2. Bowling      \nChoose Your option ( Either 1 or 2 ) :");
+                      scanf("%d",&toss_option_select);
+                     
+                      if(toss_option_select==1){
+                         
+                                printf("\n\nTOSS RESULT\n");
+                                printf("Batting : TEAM INDIA\n");
+                                printf("Bowling : TEAM PAKISTAN");
+                                batting_team_name="INDIA";
+                                bowling_team_name="PAKISTAN";
+                     }
+                     else{
+                         
+                                printf("\n\nTOSS RESULT\n");
+                                printf("Batting : TEAM PAKISTAN\n");
+                                printf("Bowling : TEAM INDIA");
+                                batting_team_name="PAKISTAN";
+                                bowling_team_name="INDIA";
+                         
+                     }
+                    
+                }
+                else if(my_team==2 && opposite_team==3){
+                    
+                      printf("OPPOSITE : TEAM SOUTH AFRICA WON THE TOSSS...\n");
+                      printf("1. Batting     \n2. Bowling      \nChoose Your option ( Either 1 or 2 ) :");
+                      scanf("%d",&toss_option_select);
+                     
+                      if(toss_option_select==1){
+                         
+                                printf("\n\nTOSS RESULT\n");
+                                printf("Batting : TEAM SOUTH AFRICA\n");
+                                printf("Bowling : TEAM PAKISTAN");
+                                batting_team_name="SOUTH AFRICA";
+                                bowling_team_name="PAKISTAN";
+                     }
+                     else{
+                         
+                                printf("\n\nTOSS RESULT\n");
+                                printf("Batting : TEAM PAKISTAN\n");
+                                printf("Bowling : TEAM SOUTH AFRICA");
+                                batting_team_name="PAKISTAN";
+                                bowling_team_name="SOUTH AFRICA";
+                         
+                     }
+                    
+                }
+                else if(my_team==3 && opposite_team==1){
+                    
+                      printf("OPPOSITE : TEAM INDIA WON THE TOSSS...\n");
+                      printf("1. Batting     \n2. Bowling      \nChoose Your option ( Either 1 or 2 ) :");
+                      scanf("%d",&toss_option_select);
+                     
+                      if(toss_option_select==1){
+                         
+                                printf("\n\nTOSS RESULT\n");
+                                printf("Batting : TEAM INDIA\n");
+                                printf("Bowling : TEAM SOUTH AFRICA");
+                                batting_team_name="INDIA";
+                                bowling_team_name="SOUTH AFRICA";
+                     }
+                     else{
+                         
+                                printf("\n\nTOSS RESULT\n");
+                                printf("Batting : TEAM SOUTH AFRICA\n");
+                                printf("Bowling : TEAM INDIA");
+                                batting_team_name="SOUTH AFRICA";
+                                bowling_team_name="INDIA";
+                         
+                     }
+                    
+                }
+                else if(my_team==3 && opposite_team==2){
+                    
+                      printf("OPPOSITE : TEAM PAKISTAN WON THE TOSSS...\n");
+                      printf("1. Batting     \n2. Bowling      \nChoose Your option ( Either 1 or 2 ) :");
+                      scanf("%d",&toss_option_select);
+                     
+                      if(toss_option_select==1){
+                         
+                                printf("\n\nTOSS RESULT\n");
+                                printf("Batting : TEAM PAKISTAN\n");
+                                printf("Bowling : TEAM SOUTH AFRICA");
+                                batting_team_name="PAKISTAN";
+                                bowling_team_name="SOUTH AFRICA";
+                                
+                     }
+                     else{
+                         
+                                printf("\n\nTOSS RESULT\n");
+                                printf("Batting : TEAM SOUTH AFRICA\n");
+                                printf("Bowling : TEAM PAKISTAN");
+                                batting_team_name="SOUTH AFRICA";
+                                bowling_team_name="PAKISTAN";
+                         
+                     }
+                    
+                }
+                        
+                
+                
+            }
+    
+}
+
+

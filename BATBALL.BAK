@@ -9,39 +9,29 @@ int gmode = DETECT, gdriver;
 int xx, yy;
 int midx, midy;
 
-void rotate(int x1,int y1,int x2,int y2,int x3,int y3,int x4,int y4)
+void rotateRect(int left,int top,int right,int bottom)
 {
-	int n=0;
-	int arr[][2]={
-		{x1,y1},
-		{x2,y2},
-		{x3,y3},
-		{x4,y4}
-		};
+    float x1, y1, x2, y2, x3, y3, x4, y4;
+    float rad = 1.5 * (3.14 / 180);
 
-	int i;
-	float rx,ry;
-	float t=(180*3.14159)/180;
-	for(i=0;i<4;i++)
-	{
-		rx=arr[i][0]*cos(t)-arr[i][1]*sin(t);
-		ry=arr[i][0]*sin(t)+arr[i][1]*cos(t);
-		arr[i][0]=rx;
-		arr[i][1]=ry;
-	}
+    line(left, bottom, right, bottom);
+    line(left, bottom, left, top);
+    line(right, bottom, right, top);
+    line(left, top, right, top);
 
-	//int i;
-	for(i=0;i<n;i++)
-	{
-		if(i==(n-1))
-		{
-		line(arr[n-1][0],getmaxy()-arr[n-1][1],arr[0][0],getmaxy()-arr[0][1]);
-		}
-		else
-		{
-			line(arr[i][0],getmaxy()-arr[i][1],arr[i+1][0],getmaxy()-arr[i+1][1]);
-		}
-	}
+    x1 = left * cos(rad) - bottom * sin(rad);
+    y1 = left * sin(rad) + bottom * cos(rad);
+    x2 = right * cos(rad) - bottom * sin(rad);
+    y2 = right * sin(rad) + bottom * cos(rad);
+    x3 = left * cos(rad) - top * sin(rad);
+    y3 = left * sin(rad) + top * cos(rad);
+    x4 = right * cos(rad) - top * sin(rad);
+    y4 = right * sin(rad) + top * cos(rad);
+
+    line(fabs(x1), fabs(y1), fabs(x2), fabs(y2));
+    line(fabs(x1), fabs(y1), fabs(x3), fabs(y3));
+    line(fabs(x3), fabs(y3), fabs(x4), fabs(y4));
+    line(fabs(x2), fabs(y2), fabs(x4), fabs(y4));
 }
 
 void main()
@@ -60,8 +50,8 @@ void main()
 	//setcolor(14);
 	line(0, midy + 100, xx, midy + 100);
 
-/*	rectangle(560,215,570,250);
-	rectangle(550,325,580,250);*/
+	rectangle(560,215,570,250);
+	rectangle(550,325,580,250);
 
 	/*line(560,215,570,215);
 	line(570,215,570,250);
@@ -76,8 +66,8 @@ void main()
 
 	//rotate(560,215,570,215,570,250,560,215);
 	//rotate
-	line(570,getmaxy()-235,580,getmaxy()-215);
-	line(580,getmaxy()-215,560,getmaxy()-250);
+	//line(570,235,580,215);
+	//line(580,215,560,250);
 	//line(560,250,550,260);
 	//line(550,260,570,225);
 
@@ -99,14 +89,14 @@ void main()
 				y = -y;
 			x += 15;
 			setcolor(14);
-			//setfillstyle(1, 14);
+			setfillstyle(1, 14);
 			circle(x, y * 100 + midx, r);
-			//floodfill(x, y * 100 + 200, 14);
+			floodfill(x, y * 100 +midx, 14);
 			delay(100);
 			setcolor(0);
 			setfillstyle(1, 0);
 			circle(x, y * 100 + midx, r);
-			//floodfill(x, y * 100 + 200, 0);
+			floodfill(x, y * 100 + midx, 0);
 				//printf("%d %d",x,y);
 
 		}
@@ -115,10 +105,20 @@ void main()
 	}
 
 	//bat
-	//delay(30);
+	cleardevice();
+	setcolor(0);
+	rectangle(560,215,570,250);
+	rectangle(550,325,580,250);
+	delay(30);
+	setcolor(WHITE);
+	line(0, midy + 100, xx, midy + 100);
+	rotateRect(560,215,570,250);
+	rotateRect(550,325,580,250);
 
 	setcolor(14);
-	circle(150,400,15);
+	setfillstyle(1,14);
+	circle(150,400,14);
+	floodfill(150, 400, 14);
 
 	/*int c,t=400;
 	int pixy=0;

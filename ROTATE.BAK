@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <conio.h>
+#include <graphics.h>
+#include <math.h>
+#include <dos.h>
+
+void rotateRect(int left,int top,int right,int bottom)
+{
+    float x1, y1, x2, y2, x3, y3, x4, y4;
+    float rad = 1.5 * (3.14 / 180);
+
+    line(left, bottom, right, bottom);
+    line(left, bottom, left, top);
+    line(right, bottom, right, top);
+    line(left, top, right, top);
+
+    x1 = left * cos(rad) - bottom * sin(rad);
+    y1 = left * sin(rad) + bottom * cos(rad);
+    x2 = right * cos(rad) - bottom * sin(rad);
+    y2 = right * sin(rad) + bottom * cos(rad);
+    x3 = left * cos(rad) - top * sin(rad);
+    y3 = left * sin(rad) + top * cos(rad);
+    x4 = right * cos(rad) - top * sin(rad);
+    y4 = right * sin(rad) + top * cos(rad);
+
+    line(fabs(x1), fabs(y1), fabs(x2), fabs(y2));
+    line(fabs(x1), fabs(y1), fabs(x3), fabs(y3));
+    line(fabs(x3), fabs(y3), fabs(x4), fabs(y4));
+    line(fabs(x2), fabs(y2), fabs(x4), fabs(y4));
+}
+
+void main()
+{
+    int gd = DETECT, gm, deg;
+    int left=560, top=215, right=570, bottom=250;
+    clrscr();
+    initgraph(&gd, &gm, "C:\\TC\\BGI");
+    /*printf("Enter the co-ordinates of the rectangle :");
+    scanf("%d%d%d%d", &left, &top, &right, &bottom);
+    printf("\nEnter the angle to rotate :");
+    scanf("%d",t);*/
+    rectangle(560,215,570,250);
+    rectangle(550,325,580,250);
+    clrscr();
+    delay(20);
+    rotateRect(560,215,570,250);
+    rotateRect(550,325,580,250);
+
+    getch();
+}
