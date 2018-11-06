@@ -43,25 +43,16 @@ void rotateRect(int left,int top,int right,int bottom)
     line(fabs(x2), fabs(y2), fabs(x4), fabs(y4));
 }
 
-void main()
+void batRotation()
 {
-	clrscr();
-	initgraph(&gmode, &gdriver, "C:\\TC\\BGI");
-	clearviewport();
-	cleardevice();
-
-	//	rectangle(2,2,518,427); left,top,right,bottom
-	xx = getmaxx();
-	yy = getmaxy();
-	midx = getmaxx() / 2;
-	midy = getmaxy() / 2;
-	printf(" %d %d %d %d", xx, yy,midx,midy);
-	//setcolor(14);
+	setcolor(WHITE);
 	line(0, midy + 100, xx, midy + 100);
+	rotateRect(560,215,570,250);
+	rotateRect(550,325,580,250);
+}
 
-	rectangle(560,215,570,250);
-	rectangle(550,325,580,250);
-	//ball
+void throwBall()
+{
 	float x = 1, y = 0.00000, j = .5, count = .1;
 	float r = 10;
 	sleep(1);
@@ -88,12 +79,11 @@ void main()
 		j += count;
 		count += .1;
 	}
+}
 
-	//ball with run 1,2,3
-	cleardevice();
-
-	//code for wicket
-	/*for(int w=30;w<=530;w+=30)
+void wicketCode()
+{
+	for(int w=30;w<=530;w+=30)
 	{
 		initial();
 		setcolor(14);
@@ -102,17 +92,66 @@ void main()
 		floodfill(w, 300, 14);
 		delay(100);
 		cleardevice();
-	}   */
+	}
 
 	delay(30);
-	setcolor(WHITE);
-	line(0, midy + 100, xx, midy + 100);
-	rotateRect(560,215,570,250);
-	rotateRect(550,325,580,250);
-	//delay(100);
-	//getch();
 
-	//code for 1,2,3
+}
+
+void run4()
+{
+	int mm=5;
+	for(int m=midy-50;m>=30;m-=30)
+	{
+		//cleardevice();
+		initial();
+		//delay(100);
+		setcolor(WHITE);
+		setfillstyle(1,14);
+		circle(550-mm,m,15);
+		floodfill(550-mm,m,15);
+		mm+=5;
+		if(m>=30 && m<=50)
+		{
+			continue;
+		}
+		else
+		{
+			delay(100);
+			cleardevice();
+		}
+	}
+	getch();
+}
+
+void run6()
+{
+	int mm=50;
+	for(int m=midy-50;m>=30;m-=30)
+	{
+		//cleardevice();
+		initial();
+		//delay(100);
+		setcolor(WHITE);
+		setfillstyle(1,14);
+		circle(550-mm,m,15);
+		floodfill(550-mm,m,15);
+		mm+=50;
+		if(m>=30 && m<=50)
+		{
+			continue;
+		}
+		else
+		{
+			delay(100);
+			cleardevice();
+		}
+	}
+	getch();
+}
+
+void run1235()
+{
 	setcolor(WHITE);
 	circle(400,350,14);
 	int ty=25;
@@ -147,57 +186,76 @@ void main()
 	setfillstyle(1,14);
 	circle(250,400,14);
 	floodfill(250, 400, 14);*/
+}
+
+void main()
+{
+	clrscr();
+	initgraph(&gmode, &gdriver, "C:\\TC\\BGI");
+	clearviewport();
+	cleardevice();
+
+	//	rectangle(2,2,518,427); left,top,right,bottom
+	xx = getmaxx();
+	yy = getmaxy();
+	midx = getmaxx() / 2;
+	midy = getmaxy() / 2;
+	//printf(" %d %d %d %d", xx, yy,midx,midy);
+	//setcolor(14);
+	line(0, midy + 100, xx, midy + 100);
+
+	rectangle(560,215,570,250);
+	rectangle(550,325,580,250);
+	//ball
+
+	//ball with run 1,2,3
+	cleardevice();
+
 
 	//outtextxy(350,350,"(350,350)");
 //	outtextxy(250,400,"(250,400)");
 //	outtextxy(200,450,"(200,450)");*/
+	int score=0;
 
-	//code for 6
-	/*int mm=50;
-	for(int m=midy-50;m>=30;m-=30)
+	int randNo;
+	while(randNo!=0)
 	{
-		//cleardevice();
 		initial();
-		//delay(100);
-		setcolor(WHITE);
-		setfillstyle(1,14);
-		circle(550-mm,m,15);
-		floodfill(550-mm,m,15);
-		mm+=50;
-		if(m>=30 && m<=50)
+		throwBall();
+		randNo=rand()%7;
+		switch(randNo)
 		{
-			continue;
-		}
-		else
-		{
-			delay(100);
-			cleardevice();
+			case 0:
+				wicketCode();
+				score=0;
+				break;
+			case 1:
+				run1235();
+				score=1;
+				break;
+			case 2:
+				run1235();
+				score=2;
+				break;
+			case 3:
+				run1235();
+				score=3;
+				break;
+			case 4:
+				run4();
+				score=4;
+				break;
+			case 5:
+				run1235();
+				score=5;
+				break;
+			case 6:
+				run6();
+				score=6;
+				break;
 		}
 	}
-	getch();*/
-
-	//code for 4
-	/*mm=5;
-	for(m=midy-50;m>=30;m-=30)
-	{
-		//cleardevice();
-		initial();
-		//delay(100);
-		setcolor(WHITE);
-		setfillstyle(1,14);
-		circle(550-mm,m,15);
-		floodfill(550-mm,m,15);
-		mm+=5;
-		if(m>=30 && m<=50)
-		{
-			continue;
-		}
-		else
-		{
-			delay(100);
-			cleardevice();
-		}
-	}
-	getch();*/
+	printf("\n Score is : %d",score);
+	getch();
 
 }
