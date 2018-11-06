@@ -92,11 +92,38 @@ void main()
 	//ball with run 1,2,3
 	cleardevice();
 
+	//code for wicket
+	/*for(int w=30;w<=530;w+=30)
+	{
+		initial();
+		setcolor(14);
+		setfillstyle(1,14);
+		circle(w,300,14);
+		floodfill(w, 300, 14);
+		delay(100);
+		cleardevice();
+	}   */
+
 	delay(30);
 	setcolor(WHITE);
 	line(0, midy + 100, xx, midy + 100);
 	rotateRect(560,215,570,250);
 	rotateRect(550,325,580,250);
+	//delay(100);
+	//getch();
+
+	//code for 1,2,3
+	setcolor(WHITE);
+	circle(400,350,14);
+	int ty=25;
+	for(int t=400;t<=200;t-=50)
+	{
+		//initial();
+		setcolor(WHITE);
+		circle(t,350-ty,14);
+		ty+=25;
+	}
+	getch();
 
 	/*setcolor(14);
 	setfillstyle(1,14);
@@ -119,15 +146,15 @@ void main()
 	setcolor(14);
 	setfillstyle(1,14);
 	circle(250,400,14);
-	floodfill(250, 400, 14);
+	floodfill(250, 400, 14);*/
 
 	//outtextxy(350,350,"(350,350)");
 //	outtextxy(250,400,"(250,400)");
 //	outtextxy(200,450,"(200,450)");*/
 
 	//code for 6
-	int mm=50;
-	for(int m=midy-50;m<=yy;m-=30)
+	/*int mm=50;
+	for(int m=midy-50;m>=30;m-=30)
 	{
 		//cleardevice();
 		initial();
@@ -137,8 +164,40 @@ void main()
 		circle(550-mm,m,15);
 		floodfill(550-mm,m,15);
 		mm+=50;
-		delay(50);
-		cleardevice();
+		if(m>=30 && m<=50)
+		{
+			continue;
+		}
+		else
+		{
+			delay(100);
+			cleardevice();
+		}
 	}
-	getch();
+	getch();*/
+
+	//code for 4
+	/*mm=5;
+	for(m=midy-50;m>=30;m-=30)
+	{
+		//cleardevice();
+		initial();
+		//delay(100);
+		setcolor(WHITE);
+		setfillstyle(1,14);
+		circle(550-mm,m,15);
+		floodfill(550-mm,m,15);
+		mm+=5;
+		if(m>=30 && m<=50)
+		{
+			continue;
+		}
+		else
+		{
+			delay(100);
+			cleardevice();
+		}
+	}
+	getch();*/
+
 }
