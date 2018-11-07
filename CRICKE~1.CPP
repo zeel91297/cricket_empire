@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <dos.h>
 #include <math.h>
+#include <ctype.h>
 
 int gmode = DETECT, gdriver;
 int xx, yy;
@@ -79,6 +80,7 @@ void throwBall()
 		j += count;
 		count += .1;
 	}
+	getch();
 }
 
 void wicketCode()
@@ -95,7 +97,7 @@ void wicketCode()
 	}
 
 	delay(30);
-
+	getch();
 }
 
 void run4()
@@ -192,70 +194,96 @@ void main()
 {
 	clrscr();
 	initgraph(&gmode, &gdriver, "C:\\TC\\BGI");
-	clearviewport();
-	cleardevice();
 
 	//	rectangle(2,2,518,427); left,top,right,bottom
 	xx = getmaxx();
 	yy = getmaxy();
 	midx = getmaxx() / 2;
 	midy = getmaxy() / 2;
+
+	int over,target;
+	printf("\n Enter how many overs you want to play?:");
+	scanf("%d",&over);
+	printf("\n Enter your target score:");
+	scanf("%d",&target);
 	//printf(" %d %d %d %d", xx, yy,midx,midy);
 	//setcolor(14);
-	line(0, midy + 100, xx, midy + 100);
+	/*line(0, midy + 100, xx, midy + 100);
 
 	rectangle(560,215,570,250);
 	rectangle(550,325,580,250);
 	//ball
 
 	//ball with run 1,2,3
-	cleardevice();
+	cleardevice();   */
 
 
 	//outtextxy(350,350,"(350,350)");
 //	outtextxy(250,400,"(250,400)");
 //	outtextxy(200,450,"(200,450)");*/
+	clrscr();
 	int score=0;
 
+	int flag=1;
 	int randNo;
-	while(randNo!=0)
+	int ball=0,totalBall=6*over;
+	while(flag)
 	{
 		initial();
 		throwBall();
 		randNo=rand()%7;
+		printf("\nrandom : %d ball: %d",randNo,ball);
+		delay(30);
+		cleardevice();
+		batRotation();
 		switch(randNo)
 		{
 			case 0:
 				wicketCode();
-				score=0;
+				score+=0;
 				break;
 			case 1:
 				run1235();
-				score=1;
+				score+=1;
 				break;
 			case 2:
 				run1235();
-				score=2;
+				score+=2;
 				break;
 			case 3:
 				run1235();
-				score=3;
+				score+=3;
 				break;
 			case 4:
 				run4();
-				score=4;
+				score+=4;
 				break;
 			case 5:
 				run1235();
-				score=5;
+				score+=5;
 				break;
 			case 6:
 				run6();
-				score=6;
+				score+=6;
 				break;
 		}
+		ball++;
+		if(randNo==0 || ball==totalBall)
+		{
+			flag=0;
+		}
+		//getch();
+		cleardevice();
 	}
 	printf("\n Score is : %d",score);
+	if(score>=target)
+	{
+		printf("\n Congratulations! You WON!!");
+	}
+	else
+	{
+		printf("\n OOPS! You lose..");
+	}
 	getch();
 
 }
