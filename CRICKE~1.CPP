@@ -9,12 +9,37 @@
 int gmode = DETECT, gdriver;
 int xx, yy;
 int midx, midy;
+int score=0,ball=0;
+
+void border()
+{
+	setcolor(1);
+	line(0,0,0,yy);
+	line(0,0,xx,0);
+	line(xx,0,xx,yy);
+	line(0,yy,xx,yy);
+
+	setcolor(4);
+	settextstyle(10,HORIZ_DIR,3);
+	outtextxy(35,5,"Welcome to Cricket Empire");
+
+	char *strBall,*strScore;
+	setcolor(2);
+	//sprintf(strBall,"Ball: %d",ball);
+	settextstyle(10,HORIZ_DIR,1);
+	outtextxy(50,50,"Ball: ");
+	outtextxy(150,50,itoa(ball,strBall,10));
+	setcolor(13);
+	//sprintf(strScore,"Run: %d",score);
+	outtextxy(200,50,"Run: ");
+	outtextxy(300,50,itoa(score,strScore,10));
+}
 
 void initial()
 {
+	border();
 	setcolor(WHITE);
 	line(0, midy + 100, xx, midy + 100);
-
 	rectangle(560,215,570,250);
 	rectangle(550,325,580,250);
 }
@@ -46,10 +71,12 @@ void rotateRect(int left,int top,int right,int bottom)
 
 void batRotation()
 {
+	border();
 	setcolor(WHITE);
 	line(0, midy + 100, xx, midy + 100);
 	rotateRect(560,215,570,250);
 	rotateRect(550,325,580,250);
+	//delay(30);
 }
 
 void throwBall()
@@ -80,7 +107,7 @@ void throwBall()
 		j += count;
 		count += .1;
 	}
-	getch();
+	//getch();
 }
 
 void wicketCode()
@@ -90,7 +117,7 @@ void wicketCode()
 		initial();
 		setcolor(14);
 		setfillstyle(1,14);
-		circle(w,300,14);
+		circle(w,300,10);
 		floodfill(w, 300, 14);
 		delay(100);
 		cleardevice();
@@ -106,11 +133,12 @@ void run4()
 	for(int m=midy-50;m>=30;m-=30)
 	{
 		//cleardevice();
-		initial();
+		//initial();
+		batRotation();
 		//delay(100);
 		setcolor(WHITE);
 		setfillstyle(1,14);
-		circle(550-mm,m,15);
+		circle(550-mm,m,10);
 		floodfill(550-mm,m,15);
 		mm+=5;
 		if(m>=30 && m<=50)
@@ -129,14 +157,16 @@ void run4()
 void run6()
 {
 	int mm=50;
+	//batRotation();
 	for(int m=midy-50;m>=30;m-=30)
 	{
 		//cleardevice();
-		initial();
+		//initial();
+		batRotation();
 		//delay(100);
 		setcolor(WHITE);
 		setfillstyle(1,14);
-		circle(550-mm,m,15);
+		circle(550-mm,m,10);
 		floodfill(550-mm,m,15);
 		mm+=50;
 		if(m>=30 && m<=50)
@@ -154,7 +184,7 @@ void run6()
 
 void run1235()
 {
-	setcolor(WHITE);
+	/*setcolor(WHITE);
 	circle(400,350,14);
 	int ty=25;
 	for(int t=400;t<=200;t-=50)
@@ -164,11 +194,12 @@ void run1235()
 		circle(t,350-ty,14);
 		ty+=25;
 	}
-	getch();
+	getch();*/
 
-	/*setcolor(14);
+	batRotation();
+	setcolor(14);
 	setfillstyle(1,14);
-	circle(350,350,14);
+	circle(350,350,10);
 	floodfill(350, 350, 14);
 
 	delay(500);
@@ -177,7 +208,7 @@ void run1235()
 	initial();
 	setcolor(14);
 	setfillstyle(1,14);
-	circle(250,400,14);
+	circle(250,400,10);
 	floodfill(250, 400, 14);
 
 	delay(500);
@@ -186,56 +217,61 @@ void run1235()
 	initial();
 	setcolor(14);
 	setfillstyle(1,14);
-	circle(250,400,14);
-	floodfill(250, 400, 14);*/
+	circle(250,400,10);
+	floodfill(250, 400, 14);
+	getch();
 }
 
 void main()
 {
 	clrscr();
 	initgraph(&gmode, &gdriver, "C:\\TC\\BGI");
-
 	//	rectangle(2,2,518,427); left,top,right,bottom
 	xx = getmaxx();
 	yy = getmaxy();
 	midx = getmaxx() / 2;
 	midy = getmaxy() / 2;
 
+	setcolor(4);
+	settextstyle(10,HORIZ_DIR,3);
+	outtextxy(35,5,"Welcome to Cricket Empire");
+
 	int over,target;
+	printf("\n\n \n \n\n\n\n");
 	printf("\n Enter how many overs you want to play?:");
 	scanf("%d",&over);
 	printf("\n Enter your target score:");
 	scanf("%d",&target);
+
+
 	//printf(" %d %d %d %d", xx, yy,midx,midy);
 	//setcolor(14);
-	/*line(0, midy + 100, xx, midy + 100);
+	line(0, midy + 100, xx, midy + 100);
 
 	rectangle(560,215,570,250);
 	rectangle(550,325,580,250);
 	//ball
 
 	//ball with run 1,2,3
-	cleardevice();   */
+	cleardevice();
 
 
 	//outtextxy(350,350,"(350,350)");
 //	outtextxy(250,400,"(250,400)");
 //	outtextxy(200,450,"(200,450)");*/
-	clrscr();
-	int score=0;
-
+	cleardevice();
 	int flag=1;
 	int randNo;
-	int ball=0,totalBall=6*over;
+	int totalBall=6*over;
 	while(flag)
 	{
 		initial();
 		throwBall();
 		randNo=rand()%7;
-		printf("\nrandom : %d ball: %d",randNo,ball);
-		delay(30);
+		/*printf("\nrandom : %d ball: %d",randNo,ball);
+		delay(30);*/
 		cleardevice();
-		batRotation();
+		//batRotation();
 		switch(randNo)
 		{
 			case 0:
@@ -275,15 +311,41 @@ void main()
 		//getch();
 		cleardevice();
 	}
-	printf("\n Score is : %d",score);
+	//border
+	setcolor(1);
+	line(0,0,0,yy);
+	line(0,0,xx,0);
+	line(xx,0,xx,yy);
+	line(0,yy,xx,yy);
+//	printf("\n Score is : %d",score);
 	if(score>=target)
 	{
-		printf("\n Congratulations! You WON!!");
+		//printf("\n Congratulations! You WON!!");
+		setcolor(4);
+		settextstyle(10,HORIZ_DIR,3);
+		outtextxy(35,5,"Welcome to Cricket Empire");
+		setcolor(2);
+		settextstyle(10,HORIZ_DIR,2);
+		outtextxy(35,100,"Congratulations! You WON!!");
 	}
 	else
 	{
-		printf("\n OOPS! You lose..");
+		//printf("\n OOPS! You lose..");
+		setcolor(4);
+		settextstyle(10,HORIZ_DIR,3);
+		outtextxy(35,5,"Welcome to Cricket Empire");
+		setcolor(15);
+		settextstyle(10,HORIZ_DIR,3);
+		outtextxy(35,100,"OOPS! You lose..");
 	}
+	setcolor(5);
+	settextstyle(10,HORIZ_DIR,3);
+	outtextxy(35,150,"Score is :");
+
+	char *cricScore;
+	setcolor(5);
+	settextstyle(10,HORIZ_DIR,3);
+	outtextxy(220,150,itoa(score,cricScore,10));
 	getch();
 
 }
