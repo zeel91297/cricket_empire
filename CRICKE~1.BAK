@@ -25,12 +25,10 @@ void border()
 
 	char *strBall,*strScore;
 	setcolor(2);
-	//sprintf(strBall,"Ball: %d",ball);
 	settextstyle(10,HORIZ_DIR,1);
 	outtextxy(50,50,"Ball: ");
 	outtextxy(150,50,itoa(ball,strBall,10));
 	setcolor(13);
-	//sprintf(strScore,"Run: %d",score);
 	outtextxy(200,50,"Run: ");
 	outtextxy(300,50,itoa(score,strScore,10));
 }
@@ -48,11 +46,6 @@ void rotateRect(int left,int top,int right,int bottom)
 {
     float x1, y1, x2, y2, x3, y3, x4, y4;
     float rad = 1.5 * (3.14 / 180);
-
-/*    line(left, bottom, right, bottom);
-    line(left, bottom, left, top);
-    line(right, bottom, right, top);
-    line(left, top, right, top);*/
 
     x1 = left * cos(rad) - bottom * sin(rad);
     y1 = left * sin(rad) + bottom * cos(rad);
@@ -76,7 +69,6 @@ void batRotation()
 	line(0, midy + 100, xx, midy + 100);
 	rotateRect(560,215,570,250);
 	rotateRect(550,325,580,250);
-	//delay(30);
 }
 
 void throwBall()
@@ -101,13 +93,10 @@ void throwBall()
 			setfillstyle(1, 0);
 			circle(x, y * 100 + midx, r);
 			floodfill(x, y * 100 + midx, 0);
-				//printf("%d %d",x,y);
-
 		}
 		j += count;
 		count += .1;
 	}
-	//getch();
 }
 
 void wicketCode()
@@ -124,8 +113,6 @@ void wicketCode()
 		delay(100);
 		cleardevice();
 	}
-
-	//delay(30);
 	getch();
 }
 
@@ -134,10 +121,7 @@ void run4()
 	int mm=5;
 	for(int m=midy-50;m>=30;m-=30)
 	{
-		//cleardevice();
-		//initial();
 		batRotation();
-		//delay(100);
 		setcolor(5);
 		settextstyle(10,HORIZ_DIR,3);
 		outtextxy(450,50,"FOUR");
@@ -162,15 +146,11 @@ void run4()
 void run6()
 {
 	int mm=50;
-	//batRotation();
 	for(int m=midy-50;m>=30;m-=30)
 	{
-		//cleardevice();
-		//initial();
 		batRotation();
 		settextstyle(10,HORIZ_DIR,3);
 		outtextxy(450,50,"SIX");
-		//delay(100);
 		setcolor(WHITE);
 		setfillstyle(1,14);
 		circle(550-mm,m,10);
@@ -191,18 +171,6 @@ void run6()
 
 void run1235()
 {
-	/*setcolor(WHITE);
-	circle(400,350,14);
-	int ty=25;
-	for(int t=400;t<=200;t-=50)
-	{
-		//initial();
-		setcolor(WHITE);
-		circle(t,350-ty,14);
-		ty+=25;
-	}
-	getch();*/
-
 	batRotation();
 	setcolor(14);
 	setfillstyle(1,14);
@@ -229,11 +197,8 @@ void run1235()
 	getch();
 }
 
-void main()
+void cricketGame()
 {
-	clrscr();
-	initgraph(&gmode, &gdriver, "C:\\TC\\BGI");
-	//	rectangle(2,2,518,427); left,top,right,bottom
 	xx = getmaxx();
 	yy = getmaxy();
 	midx = getmaxx() / 2;
@@ -250,22 +215,7 @@ void main()
 	printf("\n Enter your target score:");
 	scanf("%d",&target);
 
-	printf("%d %d",over,target);
-	getch();
-	//printf(" %d %d %d %d", xx, yy,midx,midy);
-	//setcolor(14);
-	line(0, midy + 100, xx, midy + 100);
-
-	rectangle(560,215,570,250);
-	rectangle(550,325,580,250);
 	//ball
-
-	//ball with run 1,2,3
-	cleardevice();
-
-	//outtextxy(350,350,"(350,350)");
-//	outtextxy(250,400,"(250,400)");
-//	outtextxy(200,450,"(200,450)");*/
 	cleardevice();
 	int flag=1;
 	int randNo;
@@ -274,12 +224,9 @@ void main()
 	{
 		initial();
 		throwBall();
-		srand(time(0));
+		srand(time(NULL));
 		randNo=rand()%7;
-		/*printf("\nrandom : %d ball: %d",randNo,ball);
-		delay(30);*/
 		cleardevice();
-		//batRotation();
 		switch(randNo)
 		{
 			case 0:
@@ -313,11 +260,10 @@ void main()
 				break;
 		}
 		ball++;
-		if(randNo==0 || ball==totalBall)
+		if(randNo==0 || ball==totalBall || score>=target)
 		{
 			flag=0;
 		}
-		//getch();
 		cleardevice();
 	}
 	//border
@@ -326,22 +272,19 @@ void main()
 	line(0,0,xx,0);
 	line(xx,0,xx,yy);
 	line(0,yy,xx,yy);
-//	printf("\n Score is : %d",score);
 
 	setcolor(4);
 	settextstyle(10,HORIZ_DIR,3);
 	outtextxy(35,5,"Welcome to Cricket Empire");
-	//printf("\n Score: %d,target:%d",score,target);
 	if(score>=target)
 	{
-		//printf("\n Congratulations! You WON!!");
+
 		setcolor(2);
 		settextstyle(10,HORIZ_DIR,2);
 		outtextxy(35,100,"Congratulations! You WON!!");
 	}
 	else
 	{
-		//printf("\n OOPS! You lose..");
 		setcolor(15);
 		settextstyle(10,HORIZ_DIR,3);
 		outtextxy(35,100,"OOPS! You lose..");
@@ -354,7 +297,14 @@ void main()
 	setcolor(5);
 	settextstyle(10,HORIZ_DIR,3);
 	outtextxy(220,150,itoa(score,cricScore,10));
-	printf("\n \n \n Target was %d",target);
-	getch();
 
+}
+
+void main()
+{
+	clrscr();
+	initgraph(&gmode, &gdriver, "C:\\TC\\BGI");
+	//	rectangle(2,2,518,427); left,top,right,bottom
+	cricketGame();
+	getch();
 }
