@@ -115,6 +115,8 @@ void wicketCode()
 	for(int w=30;w<=530;w+=30)
 	{
 		initial();
+		settextstyle(10,HORIZ_DIR,3);
+		outtextxy(450,50,"WICKET");
 		setcolor(14);
 		setfillstyle(1,14);
 		circle(w,300,10);
@@ -123,7 +125,7 @@ void wicketCode()
 		cleardevice();
 	}
 
-	delay(30);
+	//delay(30);
 	getch();
 }
 
@@ -136,6 +138,9 @@ void run4()
 		//initial();
 		batRotation();
 		//delay(100);
+		setcolor(5);
+		settextstyle(10,HORIZ_DIR,3);
+		outtextxy(450,50,"FOUR");
 		setcolor(WHITE);
 		setfillstyle(1,14);
 		circle(550-mm,m,10);
@@ -163,6 +168,8 @@ void run6()
 		//cleardevice();
 		//initial();
 		batRotation();
+		settextstyle(10,HORIZ_DIR,3);
+		outtextxy(450,50,"SIX");
 		//delay(100);
 		setcolor(WHITE);
 		setfillstyle(1,14);
@@ -243,7 +250,8 @@ void main()
 	printf("\n Enter your target score:");
 	scanf("%d",&target);
 
-
+	printf("%d %d",over,target);
+	getch();
 	//printf(" %d %d %d %d", xx, yy,midx,midy);
 	//setcolor(14);
 	line(0, midy + 100, xx, midy + 100);
@@ -254,7 +262,6 @@ void main()
 
 	//ball with run 1,2,3
 	cleardevice();
-
 
 	//outtextxy(350,350,"(350,350)");
 //	outtextxy(250,400,"(250,400)");
@@ -267,6 +274,7 @@ void main()
 	{
 		initial();
 		throwBall();
+		srand(time(0));
 		randNo=rand()%7;
 		/*printf("\nrandom : %d ball: %d",randNo,ball);
 		delay(30);*/
@@ -275,12 +283,13 @@ void main()
 		switch(randNo)
 		{
 			case 0:
-				wicketCode();
-				score+=0;
-				break;
-			case 1:
 				run1235();
 				score+=1;
+				break;
+			case 1:
+				wicketCode();
+				score+=0;
+				flag=0;
 				break;
 			case 2:
 				run1235();
@@ -318,34 +327,34 @@ void main()
 	line(xx,0,xx,yy);
 	line(0,yy,xx,yy);
 //	printf("\n Score is : %d",score);
+
+	setcolor(4);
+	settextstyle(10,HORIZ_DIR,3);
+	outtextxy(35,5,"Welcome to Cricket Empire");
+	//printf("\n Score: %d,target:%d",score,target);
 	if(score>=target)
 	{
 		//printf("\n Congratulations! You WON!!");
-		setcolor(4);
-		settextstyle(10,HORIZ_DIR,3);
-		outtextxy(35,5,"Welcome to Cricket Empire");
-		setcolor(4);
+		setcolor(2);
 		settextstyle(10,HORIZ_DIR,2);
 		outtextxy(35,100,"Congratulations! You WON!!");
 	}
 	else
 	{
 		//printf("\n OOPS! You lose..");
-		setcolor(4);
-		settextstyle(10,HORIZ_DIR,15);
-		outtextxy(35,5,"Welcome to Cricket Empire");
-		setcolor(4);
-		settextstyle(10,HORIZ_DIR,15);
+		setcolor(15);
+		settextstyle(10,HORIZ_DIR,3);
 		outtextxy(35,100,"OOPS! You lose..");
 	}
-	setcolor(4);
-	settextstyle(10,HORIZ_DIR,5);
+	setcolor(5);
+	settextstyle(10,HORIZ_DIR,3);
 	outtextxy(35,150,"Score is :");
 
 	char *cricScore;
-	setcolor(4);
-	settextstyle(10,HORIZ_DIR,5);
+	setcolor(5);
+	settextstyle(10,HORIZ_DIR,3);
 	outtextxy(220,150,itoa(score,cricScore,10));
+	printf("\n \n \n Target was %d",target);
 	getch();
 
 }
